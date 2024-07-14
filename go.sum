@@ -191,18 +191,12 @@ github.com/amazon-contributing/opentelemetry-collector-contrib/extension/awsprox
 github.com/amazon-contributing/opentelemetry-collector-contrib/extension/awsproxy v0.0.0-20240604205355-82dc97164e88/go.mod h1:CMxOkDu9MF1JJ7X/jYYvjFTLxZ90n+mkFt88aMdBINI=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/awsutil v0.0.0-20240604205355-82dc97164e88 h1:wciLSLkoe6hlfzERjowXjl/G4keXHgZkrascV4ev6BI=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/awsutil v0.0.0-20240604205355-82dc97164e88/go.mod h1:V8pzzNan0O1W9o3rBWpSwn8YIUN9ZVCEctuzn55EWtw=
-github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/containerinsight v0.0.0-20240604205355-82dc97164e88 h1:/aw/gz8G76MDm4YRoAfaB6AAOq8X3pcbqfm7pNjx1iI=
-github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/containerinsight v0.0.0-20240604205355-82dc97164e88/go.mod h1:EW3A0XWGehjQfN6cw17uoDtYqd5SqsXDNfac9WAj8oU=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/cwlogs v0.0.0-20240604205355-82dc97164e88 h1:mi0J/jQeiPMqEqqH4+o5WA3RMhyqSKZ9OPrZY1qsP/w=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/cwlogs v0.0.0-20240604205355-82dc97164e88/go.mod h1:dkG+z2jMW6p8HgiZauQwJLgeTxQzwa/I1qoeSx0U3wI=
-github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/k8s v0.0.0-20240604205355-82dc97164e88 h1:EBw+PdzFDgq4aavGFa46I49Sz5DEXjrx6Nm9sPuYxPk=
-github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/k8s v0.0.0-20240604205355-82dc97164e88/go.mod h1:vwINNzS7Mu37VQRRa5Kq/iO88u30K3fL0MdssCP5Qnw=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/proxy v0.0.0-20240604205355-82dc97164e88 h1:SojHbT2cXgFXRHw1dAXc4qIIBGGarLzqfpnMXusN8fY=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/proxy v0.0.0-20240604205355-82dc97164e88/go.mod h1:bwdfq5JKghWQG9QrzVW8g9Kd2D7b9brOaHiYWPO8V4A=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/xray v0.0.0-20240604205355-82dc97164e88 h1:vrmlXIH1nDJJJF9InsBYZcp2EdarQuiKY6b9xnvCwQI=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/xray v0.0.0-20240604205355-82dc97164e88/go.mod h1:Y+QZTJhbAmXu7FcAlFjQ78hxoGMXP7apd9X5ux6ENQo=
-github.com/amazon-contributing/opentelemetry-collector-contrib/internal/coreinternal v0.0.0-20240604205355-82dc97164e88 h1:aawL1Wu8iVMWVmI8vRDcMR8OUI8mVwDqhyq7FQO1sUw=
-github.com/amazon-contributing/opentelemetry-collector-contrib/internal/coreinternal v0.0.0-20240604205355-82dc97164e88/go.mod h1:0arlQ0mj/VhcFFSKHDmIc+iieHweXKENSBcqNnAY8OA=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/k8sconfig v0.0.0-20240604205355-82dc97164e88 h1:YbFx5BW2q0Qan0kQFnVXEMAHT/5sD/p356Qm0QjpwT4=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/k8sconfig v0.0.0-20240604205355-82dc97164e88/go.mod h1:JRRvo6HJ8jtHzHA2/H4+bIZsO5M8gpSXDLZ06fHN7II=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/kubelet v0.0.0-20240604205355-82dc97164e88 h1:hQ1RARi6WWL6MSkkX4ggfYB3ypa2ax22GimUX7awlhU=
@@ -215,8 +209,6 @@ github.com/amazon-contributing/opentelemetry-collector-contrib/pkg/translator/pr
 github.com/amazon-contributing/opentelemetry-collector-contrib/pkg/translator/prometheus v0.0.0-20240604205355-82dc97164e88/go.mod h1:FjFQFT6tfC7Gac53GC/vorbTwvR/UzRrGh/rgSQsCB4=
 github.com/amazon-contributing/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.0.0-20240604205355-82dc97164e88 h1:eYvJPHe85d8O/caqwBV76+g5zxl4OE6mx55fDzOQIn8=
 github.com/amazon-contributing/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.0.0-20240604205355-82dc97164e88/go.mod h1:a6HP//RgakNXjSCDK5NB1Fxb7uNGWD23JTWqSyp1DxU=
-github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver v0.0.0-20240604205355-82dc97164e88 h1:k1kmxlRH9UhzmlV+DNHlAacJp/bniDfsbL3PoH61/c0=
-github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver v0.0.0-20240604205355-82dc97164e88/go.mod h1:qUFt/MaXuMA2uRd/hssUWAyIw5IsriPv8KV4VjPjWZA=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awsxrayreceiver v0.0.0-20240604205355-82dc97164e88 h1:DeKLxbcnTGWpqohruyGddFdUyVfu4mLvzpU0aNL58Ok=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awsxrayreceiver v0.0.0-20240604205355-82dc97164e88/go.mod h1:gw1UQJfG+9fp8X3JkKp1q66J86w1nnFFUDQslUCZStI=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/jmxreceiver v0.0.0-20240604205355-82dc97164e88 h1:YqJHT8oIRkuCol14Eon+f/6iUWIHY+Sw6mdfR3no2mg=

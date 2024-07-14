@@ -161,6 +161,8 @@ func getNodeMetricDeclarations(conf *confmap.Conf) []*awsemfexporter.MetricDecla
 				MetricNameSelectors: []string{
 					"node_interface_network_rx_dropped", "node_interface_network_tx_dropped",
 					"node_diskio_io_service_bytes_total", "node_diskio_io_serviced_total",
+					"hyper_pod_node_Schedulable", "hyper_pod_node_UnschedulablePendingReplacement",
+					"hyper_pod_node_SchedulablePreferred", "hyper_pod_node_UnschedulablePendingReboot",
 				},
 			},
 		}
