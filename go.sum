@@ -197,6 +197,8 @@ github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/prox
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/proxy v0.0.0-20240604205355-82dc97164e88/go.mod h1:bwdfq5JKghWQG9QrzVW8g9Kd2D7b9brOaHiYWPO8V4A=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/xray v0.0.0-20240604205355-82dc97164e88 h1:vrmlXIH1nDJJJF9InsBYZcp2EdarQuiKY6b9xnvCwQI=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/aws/xray v0.0.0-20240604205355-82dc97164e88/go.mod h1:Y+QZTJhbAmXu7FcAlFjQ78hxoGMXP7apd9X5ux6ENQo=
+github.com/amazon-contributing/opentelemetry-collector-contrib/internal/coreinternal v0.0.0-20240604205355-82dc97164e88 h1:aawL1Wu8iVMWVmI8vRDcMR8OUI8mVwDqhyq7FQO1sUw=
+github.com/amazon-contributing/opentelemetry-collector-contrib/internal/coreinternal v0.0.0-20240604205355-82dc97164e88/go.mod h1:0arlQ0mj/VhcFFSKHDmIc+iieHweXKENSBcqNnAY8OA=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/k8sconfig v0.0.0-20240604205355-82dc97164e88 h1:YbFx5BW2q0Qan0kQFnVXEMAHT/5sD/p356Qm0QjpwT4=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/k8sconfig v0.0.0-20240604205355-82dc97164e88/go.mod h1:JRRvo6HJ8jtHzHA2/H4+bIZsO5M8gpSXDLZ06fHN7II=
 github.com/amazon-contributing/opentelemetry-collector-contrib/internal/kubelet v0.0.0-20240604205355-82dc97164e88 h1:hQ1RARi6WWL6MSkkX4ggfYB3ypa2ax22GimUX7awlhU=
