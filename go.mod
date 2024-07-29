@@ -10,7 +10,7 @@ replace github.com/influxdata/telegraf => github.com/aws/telegraf v0.10.2-0.2024
 // to be all replaced since there are some changes that will always be from upstream
 replace (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter => github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.0.0-20240604205355-82dc97164e88
-	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsemfexporter => github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awsemfexporter v0.0.0-20240604205355-82dc97164e88
+	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsemfexporter => ../opentelemetry-collector-contrib/exporter/awsemfexporter
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsxrayexporter => github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awsxrayexporter v0.0.0-20240604205355-82dc97164e88
 )
 
