@@ -182,9 +182,7 @@ exporters:
                 - hyper_pod_node_health_status_schedulable
                 - hyper_pod_node_health_status_unschedulable_pending_replacement
                 - hyper_pod_node_health_status_unschedulable_pending_reboot
-                - hyper_pod_node_health_status_schedulable_preferred
                 - hyper_pod_node_health_status_unschedulable
-                - hyper_pod_node_health_status_unknown
             - dimensions:
                 - - ClusterName
                   - InstanceId
