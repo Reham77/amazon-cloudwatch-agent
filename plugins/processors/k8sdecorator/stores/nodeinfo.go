@@ -18,12 +18,10 @@ import (
 )
 
 type nodeStats struct {
-	podCnt        int
-	containerCnt  int
-	cpuReq        uint64
-	memReq        uint64
-	gpuReq        uint64
-	gpuUsageTotal uint64
+	podCnt       int
+	containerCnt int
+	cpuReq       int64
+	memReq       int64
 }
 
 type nodeInfo struct {
