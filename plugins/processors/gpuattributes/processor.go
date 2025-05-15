@@ -7,6 +7,7 @@ import (
 	"context"
 	"encoding/json"
 	"strings"
+	"fmt"
 
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
@@ -64,37 +65,77 @@ func newGpuAttributesProcessor(config *Config, logger *zap.Logger) *gpuAttribute
 }
 
 func (d *gpuAttributesProcessor) processMetrics(_ context.Context, md pmetric.Metrics) (pmetric.Metrics, error) {
+	// rms := md.ResourceMetrics()
+	// for i := 0; i < rms.Len(); i++ {
+	// 	rs := rms.At(i)
+	// 	ilms := rs.ScopeMetrics()
+	// 	for j := 0; j < ilms.Len(); j++ {
+	// 		ils := ilms.At(j)
+	// 		metrics := ils.Metrics()
+
+	// 		d.filterGpuMetricsWithoutPodName(metrics, rs.Resource().Attributes())
+
+	// 		metricsLength := metrics.Len()
+	// 		for k := 0; k < metricsLength; k++ {
+	// 			m := metrics.At(k)
+	// 			d.awsNeuronMemoryMetricAggregator.AggregateMemoryMetric(m)
+	// 			// non neuron metric is returned as a singleton list
+	// 			d.awsNeuronMetricModifier.ModifyMetric(m, metrics)
+	// 		}
+	// 		if d.awsNeuronMemoryMetricAggregator.MemoryMetricsFound {
+	// 			aggregatedMemoryMetric := d.awsNeuronMemoryMetricAggregator.FlushAggregatedMemoryMetric()
+	// 			d.awsNeuronMetricModifier.ModifyMetric(aggregatedMemoryMetric, metrics)
+	// 		}
+
+	// 		//loop over all metrics and filter labels
+	// 		for k := 0; k < metrics.Len(); k++ {
+	// 			m := metrics.At(k)
+	// 			d.processMetricAttributes(m)
+	// 		}
+	// 	}
+
+	// 	dropResourceMetricAttributes(rs)
+	// }
+	var logMessage strings.Builder
+	// fmt.Fprint(&logMessage, "K8s Control-Plane")
 	rms := md.ResourceMetrics()
+	var totalSum float64
 	for i := 0; i < rms.Len(); i++ {
 		rs := rms.At(i)
+		rs.Resource().Attributes().AsRaw()
 		ilms := rs.ScopeMetrics()
+		// logMessage.WriteString(fmt.Sprintf("\t\"ResourceMetric_%d\": {\n", i))
+		// logMessage.WriteString(fmt.Sprintf("\t\t\"Resource attributes\": %s,\n", rs.Resource().Attributes().AsRaw()))
 		for j := 0; j < ilms.Len(); j++ {
 			ils := ilms.At(j)
 			metrics := ils.Metrics()
-
-			d.filterGpuMetricsWithoutPodName(metrics, rs.Resource().Attributes())
-
-			metricsLength := metrics.Len()
-			for k := 0; k < metricsLength; k++ {
-				m := metrics.At(k)
-				d.awsNeuronMemoryMetricAggregator.AggregateMemoryMetric(m)
-				// non neuron metric is returned as a singleton list
-				d.awsNeuronMetricModifier.ModifyMetric(m, metrics)
-			}
-			if d.awsNeuronMemoryMetricAggregator.MemoryMetricsFound {
-				aggregatedMemoryMetric := d.awsNeuronMemoryMetricAggregator.FlushAggregatedMemoryMetric()
-				d.awsNeuronMetricModifier.ModifyMetric(aggregatedMemoryMetric, metrics)
-			}
-
-			//loop over all metrics and filter labels
+			// logMessage.WriteString(fmt.Sprintf("\t\t\"ScopeMetric_%d\": {\n", j))
+			// logMessage.WriteString(fmt.Sprintf("\t\t\"Metrics_%d\": [\n", j))
 			for k := 0; k < metrics.Len(); k++ {
 				m := metrics.At(k)
-				d.processMetricAttributes(m)
+				// logMessage.WriteString(fmt.Sprintf("\t\t\t\"Metric_%d\": {\n", k))
+				if strings.Contains(m.Name(), "apiserver_request_total") {
+					fmt.Fprint(&logMessage, "Metric Name : ",m.Name())
+					var datapoints pmetric.NumberDataPointSlice
+					switch m.Type() {
+					case pmetric.MetricTypeGauge:
+						datapoints = m.Gauge().DataPoints()
+					case pmetric.MetricTypeSum:
+						datapoints = m.Sum().DataPoints()
+					default:
+						datapoints = pmetric.NewNumberDataPointSlice()
+					}
+					for yu := 0; yu < datapoints.Len(); yu++ {
+						totalSum+=datapoints.At(yu).DoubleValue()
+					}
+					fmt.Fprint(&logMessage, " Total Sum : ",totalSum)
+					fmt.Fprint(&logMessage, " TimeStamp : ",datapoints.At(0).Timestamp())
+				}
 			}
 		}
-
-		dropResourceMetricAttributes(rs)
 	}
+	d.logger.Info(logMessage.String())	
+	
 	return md, nil
 }
 

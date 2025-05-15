@@ -14,8 +14,12 @@ import (
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/extension/agenthealth"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/batchprocessor"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/gpu"
+	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/groupbyattrsprocessor"
+	// "github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/intervalprocessor"
+	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/transformprocessor"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/kueue"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/metricstransformprocessor"
+	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/resourceprocessor"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/receiver/awscontainerinsight"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/receiver/awscontainerinsightskueue"
 )
@@ -23,6 +27,7 @@ import (
 const (
 	ciPipelineName    = common.PipelineNameContainerInsights
 	kueuePipelineName = "kueueContainerInsights"
+	aggregatedCPPipelineName = "aggregatedControlPlaneMetrics"
 )
 
 var (
@@ -57,7 +62,7 @@ func (t *translator) Translate(conf *confmap.Conf) (*common.ComponentTranslators
 	}
 
 	// create processor map with default batch processor based on pipeline name
-	processors := common.NewTranslatorMap(batchprocessor.NewTranslatorWithNameAndSection(t.pipelineName, common.LogsKey))
+	processors := common.NewTranslatorMap(batchprocessor.NewTranslatorWithNameAndSection(t.pipelineName, "noOp"))
 	// create exporter map with default emf exporter based on pipeline name
 	exporters := common.NewTranslatorMap(awsemf.NewTranslatorWithName(t.pipelineName))
 	// create extensions map based on pipeline name
@@ -75,12 +80,22 @@ func (t *translator) Translate(conf *confmap.Conf) (*common.ComponentTranslators
 		// Append the metricstransformprocessor only if enhanced container insights is enabled
 		enhancedContainerInsightsEnabled := awscontainerinsight.EnhancedContainerInsightsEnabled(conf)
 		if enhancedContainerInsightsEnabled {
+			// Batch the Metrics together
+			processors.Set(gpu.NewTranslatorWithName(t.pipelineName))
+			processors.Set(batchprocessor.NewTranslatorWithNameAndSection("AggregateBatch", "aggregate"))
+			// add a resourcesprocessor to drop unique resource labels for ControlPlane Metrics
+			processors.Set(resourceprocessor.NewTranslator(common.WithName(t.pipelineName)),)
+			// add a groupbyattrsprocessor to group different batch of control plane metrics
+			processors.Set(groupbyattrsprocessor.NewTranslatorWithName(t.pipelineName))
+			// add a resourcesprocessor to drop unique resource labels for ControlPlane Metrics
+			processors.Set(transformprocessor.NewTranslatorWithName(t.pipelineName))
 			// add metricstransformprocessor to processors for enhanced container insights
 			processors.Set(metricstransformprocessor.NewTranslatorWithName(t.pipelineName))
-			acceleratedComputeMetricsEnabled := awscontainerinsight.AcceleratedComputeMetricsEnabled(conf)
-			if acceleratedComputeMetricsEnabled {
-				processors.Set(gpu.NewTranslatorWithName(t.pipelineName))
-			}
+			processors.Set(gpu.NewTranslatorWithName("After-Processing"))
+			// acceleratedComputeMetricsEnabled := awscontainerinsight.AcceleratedComputeMetricsEnabled(conf)
+			// if acceleratedComputeMetricsEnabled {
+			// 	processors.Set(gpu.NewTranslatorWithName(t.pipelineName))
+			// }
 		}
 	case kueuePipelineName:
 		// add prometheus receiver for kueue

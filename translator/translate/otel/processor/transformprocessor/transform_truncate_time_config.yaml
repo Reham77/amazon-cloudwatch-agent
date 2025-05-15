@@ -1,0 +1,7 @@
+metric_statements:
+  - context: resource
+    statements: []
+  - context: datapoint
+    statements:
+      - set(time, TruncateTime(Now(), Duration("60s"))) where resource.attributes["AggregatedMetrics"] != nil
+      - set(start_time, TruncateTime(start_time, Duration("60s"))) where resource.attributes["AggregatedMetrics"] != nil

@@ -81,11 +81,88 @@ func (t *translator) Translate(conf *confmap.Conf) (component.Config, error) {
 	if t.name == common.PipelineNameContainerInsights {
 		transformRules = []map[string]interface{}{
 			{
+				"include":	"apiserver_request_total",
+				"action":	"update",
+				"operations":	[]map[string]interface{}{
+					{
+						"action":	"aggregate_labels",
+						"label_set":	[]string{"code", "component", "verb", "subresource", "group", "resource", "scope", "version","ClusterName", "NodeName","Type","Version"},
+						"aggregation_type": "sum",
+					},
+				},
+			},
+			{
 				"include":                   "apiserver_request_total",
 				"match_type":                "regexp",
 				"experimental_match_labels": map[string]string{"code": "^5.*"},
 				"action":                    "insert",
 				"new_name":                  "apiserver_request_total_5xx",
+			},
+			{
+				"include":	"apiserver_storage_size_bytes",
+				"action":	"update",
+				"operations":	[]map[string]interface{}{
+					{
+						"action":	"aggregate_labels",
+						"label_set":	[]string{"storage_cluster_id","ClusterName", "NodeName","Type","Version"},
+						"aggregation_type": "sum",
+					},
+				},
+			},
+			{
+				"include":	"apiserver_current_inflight_requests",
+				"action":	"update",
+				"operations":	[]map[string]interface{}{
+					{
+						"action":	"aggregate_labels",
+						"label_set":	[]string{"request_kind", "ClusterName", "NodeName","Type","Version"},
+						"aggregation_type": "sum",
+					},
+				},
+			},
+			{
+				"include":	"apiserver_admission_controller_admission_duration_seconds_sum",
+				"action":	"update",
+				"operations":	[]map[string]interface{}{
+					{
+						"action":	"aggregate_labels",
+						"label_set":	[]string{"operation", "name", "rejected", "ClusterName", "NodeName","Type","Version"},
+						"aggregation_type": "sum",
+					},
+				},
+			},
+			{
+				"include":	"apiserver_admission_controller_admission_duration_seconds_count",
+				"action":	"update",
+				"operations":	[]map[string]interface{}{
+					{
+						"action":	"aggregate_labels",
+						"label_set":	[]string{"operation", "name", "rejected", "ClusterName", "NodeName","Type","Version"},
+						"aggregation_type": "sum",
+					},
+				},
+			},
+			{
+				"include":	"apiserver_request_duration_seconds_sum",
+				"action":	"update",
+				"operations":	[]map[string]interface{}{
+					{
+						"action":	"aggregate_labels",
+						"label_set":	[]string{"resource", "scope", "verb", "version", "component", "ClusterName", "NodeName","Type","Version"},
+						"aggregation_type": "sum",
+					},
+				},
+			},
+			{
+				"include":	"apiserver_request_duration_seconds_count",
+				"action":	"update",
+				"operations":	[]map[string]interface{}{
+					{
+						"action":	"aggregate_labels",
+						"label_set":	[]string{"resource", "scope", "verb", "version", "component", "ClusterName", "NodeName","Type","Version"},
+						"aggregation_type": "sum",
+					},
+				},
 			},
 		}
 

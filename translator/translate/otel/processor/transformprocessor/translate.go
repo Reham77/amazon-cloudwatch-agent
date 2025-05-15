@@ -21,6 +21,9 @@ var transformJmxConfig string
 //go:embed transform_jmx_drop_config.yaml
 var transformJmxDropConfig string
 
+//go:embed transform_truncate_time_config.yaml
+var transformTruncateTimeConfig string
+
 type translator struct {
 	name    string
 	factory processor.Factory
@@ -38,6 +41,9 @@ func (t *translator) ID() component.ID {
 
 func (t *translator) Translate(_ *confmap.Conf) (component.Config, error) {
 	cfg := t.factory.CreateDefaultConfig().(*transformprocessor.Config)
+	if t.name == common.PipelineNameContainerInsights {
+		return common.GetYamlFileToYamlConfig(cfg, transformTruncateTimeConfig)
+	}
 	if t.name == common.PipelineNameContainerInsightsJmx {
 		return common.GetYamlFileToYamlConfig(cfg, transformJmxConfig)
 	}

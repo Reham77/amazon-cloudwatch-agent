@@ -53,9 +53,9 @@ func (t *translator) ID() component.ID {
 // Translate creates a processor config based on the fields in the
 // Metrics section of the JSON config.
 func (t *translator) Translate(conf *confmap.Conf) (component.Config, error) {
-	if conf == nil || (!conf.IsSet(common.JmxConfigKey) && t.Name() != common.PipelineNameContainerInsightsJmx) {
-		return nil, &common.MissingKeyError{ID: t.ID(), JsonKey: common.JmxConfigKey}
-	}
+	// if conf == nil || (!conf.IsSet(common.JmxConfigKey) && t.Name() != common.PipelineNameContainerInsightsJmx) {
+	// 	return nil, &common.MissingKeyError{ID: t.ID(), JsonKey: common.JmxConfigKey}
+	// }
 
 	cfg := t.factory.CreateDefaultConfig().(*resourceprocessor.Config)
 	var attributes []any
@@ -63,8 +63,10 @@ func (t *translator) Translate(conf *confmap.Conf) (component.Config, error) {
 		attributes = t.getJMXAttributes(conf)
 	} else if t.Name() == common.PipelineNameContainerInsightsJmx {
 		attributes = t.getContainerInsightsJMXAttributes(conf)
+	} else if t.Name() == common.PipelineNameContainerInsights {
+		attributes = t.getContainerInsightsAttributes()
 	}
-	if len(attributes) == 0 {
+	if len(attributes) == 0 || !(t.Name() == common.PipelineNameContainerInsights){
 		baseKey := common.JmxConfigKey
 		if t.Index() != -1 {
 			baseKey = fmt.Sprintf("%s[%d]", baseKey, t.Index())
@@ -134,6 +136,32 @@ func (t *translator) getContainerInsightsJMXAttributes(conf *confmap.Conf) []any
 			"key":    "NodeName",
 			"value":  nodeName,
 			"action": "insert",
+		},
+	}
+}
+
+func (t *translator) getContainerInsightsAttributes() []any {
+
+	return []any{
+		map[string]any{
+			"key":            "net.host.name",
+			"action":         "delete",
+		},
+		map[string]any{
+			"key":            "server.address",
+			"action":         "delete",
+		},
+		map[string]any{
+			"key":            "service.instance.id",
+			"action":         "delete",
+		},
+		map[string]any{
+			"key":            "net.host.port",
+			"action":         "delete",
+		},
+		map[string]any{
+			"key":            "server.port",
+			"action":         "delete",
 		},
 	}
 }

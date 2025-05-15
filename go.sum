@@ -220,8 +220,6 @@ github.com/amazon-contributing/opentelemetry-collector-contrib/pkg/translator/pr
 github.com/amazon-contributing/opentelemetry-collector-contrib/pkg/translator/prometheus v0.0.0-20241216205413-8e059f1441db/go.mod h1:21nuEQl7YYeLkVrGGvxPXkljqjR40teBCG5trGZ5LxM=
 github.com/amazon-contributing/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.0.0-20241216205413-8e059f1441db h1:hLUqHFJ1WXLugc2UaX921NREVt5Z97LtKhsCvbIp5M4=
 github.com/amazon-contributing/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.0.0-20241216205413-8e059f1441db/go.mod h1:mwpBj24vuuuvs11sJpGWtWLtd9Ou7RizcuXc+Uofhi8=
-github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver v0.0.0-20241216205413-8e059f1441db h1:kfh9b7QjmRIkT6ytj/GcpQXn+zQtIaxMtfzfyTiChr8=
-github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver v0.0.0-20241216205413-8e059f1441db/go.mod h1:dnULh8T9lt2RWMwLd3DdTPiTwniRrHlOQLcdVDn9/aQ=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightskueuereceiver v0.0.0-20241216205413-8e059f1441db h1:MLRpuOmiOtN/vzFQCSaO+HrcZPOi4GW2wZvRQonJsLo=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightskueuereceiver v0.0.0-20241216205413-8e059f1441db/go.mod h1:QWPqmqbzXUZtrh4I0uCJXzDnvUMdxDd9UGjdZLGxf68=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awsxrayreceiver v0.0.0-20241216205413-8e059f1441db h1:QMTBAyheWMMOEDzLd9srk9relhYBnGhr3gQCHX+g/AA=
@@ -1185,6 +1183,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/metrics v
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/metrics v0.103.0/go.mod h1:8IP4A6OLAjEqKAl6zuwzFSUI+iH8eCkpkV2aRyd+guk=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.103.0 h1:olbjLOuCgVCiRNzdg0I9Lv7VuUHFbEuqP31fdriyqi0=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.103.0/go.mod h1:2Zksmb1fF+4ksNsOxSVrHz5IoC/2ljvtqJGzy7qe8+E=
+github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics v0.103.0 h1:Pt7k4F2PBhxLsXEOmtPa0ruGKWxkz+knOpQhGjFCCj0=
+github.com/open-telemetry/opentelemetry-collector-contrib/internal/exp/metrics v0.103.0/go.mod h1:94YwfWflNwjx+d2nW/O7PsYcGC5HiRxcsSIQza5cJp0=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter v0.103.0 h1:HIhw3poxC0r5NyOOvO5m+yCnXWBaOvRfkq3XGs+Ag58=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/filter v0.103.0/go.mod h1:5Y5wUGq+NNIgvkj3qNSsS3QJx3KiU4DfUFbMrlMlPsQ=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8stest v0.103.0 h1:vSHoHLveqT9NULaIdIbfPgEvJ0e+UkBitb3dnawmunc=
@@ -1221,8 +1221,12 @@ github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatoratep
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v0.103.0/go.mod h1:cElQF63Syrv/yugPAe5ho/BofKJoy0YSLuH8JYEQEvc=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.103.0 h1:u2ZcBCuOXpD7FIm+LZrhEMhi/Ny/mhivAfuCUpPzrUg=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.103.0/go.mod h1:9n3OvWN10XXyg+o71jeuO94u8mEWOI90Vg8y3M7zpE0=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.103.0 h1:zDPvJi7pcuzn7kY4Wghzi277tLMkvL2BIYg2XyKNEFo=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.103.0/go.mod h1:G8GVZ3nzKKdURGsuZHEpbuZAftIMCWfmh7oZQogpwjs=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor v0.103.0 h1:Y8sviHpNWaWnCZe1d/1myw5hvFnfoa+PFQCyNvGt7Sc=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor v0.103.0/go.mod h1:fcpYaH7c0/yT5dg2ACJdqv7w/sT/MB9azoB9kApYzJg=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/intervalprocessor v0.103.0 h1:/ZXtDE5KsHUnuzAQUzpACpvm0/UrZ7enbL9+hqjRl5k=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/intervalprocessor v0.103.0/go.mod h1:LpcAJuOTeLRHcei+stwPcXFM3toWmGxoMg1RKou3nfY=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.103.0 h1:v19lfgrsflmimm0LGOZoB51eNO0305Yud6LCnhS7LPY=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.103.0/go.mod h1:Z8OvUd7UJJpyXT2O5ma8QT42NfkP/7Q0l1oxStJ/5MY=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricsgenerationprocessor v0.103.0 h1:nGxoV0yVFNJOS7jGRAdkSHEUBONHp7Sd8kbP/WP64go=
